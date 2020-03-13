@@ -15,10 +15,6 @@
 - Escolheu-se a biblioteca de gráficos recharts pela facilidade de integração com o react.
 - Uso de linters para manter o código padronizado; automaticamente executado ao comitar.
 
-# Ideias
-
-- Escrever tests e2e usando cypress
-
 # Rodando o projeto 
 
 ```
@@ -30,6 +26,14 @@ yarn install
 
 # Starta o servidor de desenvolvimento
 yarn start
+```
+
+# Criando arquivos
+
+É possível otimizar criar alguns arquivos padronizados como stores e componentes compartilhados
+
+```
+yarn generate
 ```
 
 # Rodando os tests
