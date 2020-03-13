@@ -13,16 +13,14 @@ import { formatMoney, formatShortNumber } from "../../utils/number";
 import { inject, observer } from "mobx-react";
 import { Box, Flex } from "rebass/styled-components";
 import { useTheme } from "styled-components";
-import { Text } from "rebass";
+import LoadingIndicator from "../../sharedComponents/LoadingIndicator";
+import NoContent from "../../sharedComponents/NoContent";
+import ErrorMessage from "../../sharedComponents/ErrorMessage";
 
 const DOMAIN_CHART_DELTA_MONEY = 10000;
 
-function NoContent() {
-  return <Text>Não existem dados para o período</Text>;
-}
-
 function IncomesChart({ incomesStore }) {
-  const { filteredIncomes } = incomesStore;
+  const { filteredIncomes, loading, error } = incomesStore;
   const theme = useTheme();
 
   return (
@@ -40,7 +38,11 @@ function IncomesChart({ incomesStore }) {
           }
         }}
       >
-        {!filteredIncomes.length ? (
+        {loading ? (
+          <LoadingIndicator />
+        ) : error ? (
+          <ErrorMessage />
+        ) : !filteredIncomes.length ? (
           <NoContent />
         ) : (
           <ResponsiveContainer>

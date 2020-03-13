@@ -3,13 +3,7 @@ import { Box, Flex } from "rebass/styled-components";
 import FilterLabel from "./FilterLabel";
 import { Label, Radio } from "@rebass/forms/styled-components";
 
-export function RadioField({
-  id,
-  label,
-  options,
-  selectedOptionValue,
-  onChange
-}) {
+function RadioField({ id, label, options, selectedOptionValue, onChange }) {
   const handleChange = useCallback(period => () => onChange(period), [
     onChange
   ]);
@@ -20,7 +14,7 @@ export function RadioField({
 
       <Flex flexDirection={["column", "column", "row"]} mt={2}>
         {options.map(option => (
-          <Label alignItems={"center"} key={option.value}>
+          <Label width="auto" mr={3} alignItems={"center"} key={option.value}>
             <Radio
               mr={1}
               role="radio"
@@ -37,3 +31,5 @@ export function RadioField({
     </Box>
   );
 }
+
+export default React.memo(RadioField);

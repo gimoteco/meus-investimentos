@@ -1,5 +1,3 @@
-import { getInterval, Periods } from "./period";
-import subMonths from "date-fns/subMonths";
 import { formatMoney, formatShortNumber } from "./number";
 import { configureLocale } from "../App";
 

@@ -1,5 +1,5 @@
-import { render, fireEvent, getByText } from "@testing-library/react";
-import { RadioField } from "./RadioField";
+import { fireEvent, render } from "@testing-library/react";
+import RadioField from "./RadioField";
 import React from "react";
 
 describe("RadioField", () => {

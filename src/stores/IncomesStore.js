@@ -8,12 +8,29 @@ const incomesURL =
   "https://gist.githubusercontent.com/AgtLucas/a67c345e15c2eb3d4668c9b7e330ac44/raw/1de2450cbe69fde065bca9e498aaaaafcca61257/mock-data.js";
 const SELECTED_PERIOD_KEY = "selectedPeriod";
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 class IncomesStore {
   incomes = [];
   selectedPeriod = Storage.read(SELECTED_PERIOD_KEY) ?? Periods.ALL;
+  loading = false;
+  error = null;
 
   constructor() {
-    client.get(incomesURL).then(incomes => this.incomes.replace(incomes));
+    this.loading = true;
+    client
+      .get(incomesURL)
+      .then(async incomes => {
+        // intentional to simulate a delay to show loading indicator
+        await sleep(2000);
+        this.incomes.replace(incomes);
+      })
+      .catch(error => {
+        this.error = error;
+      })
+      .finally(() => (this.loading = false));
   }
 
   get filteredIncomes() {
@@ -34,6 +51,7 @@ class IncomesStore {
 
 decorate(IncomesStore, {
   incomes: observable,
+  loading: observable,
   selectedPeriod: observable,
   filteredIncomes: computed,
   setFilter: action

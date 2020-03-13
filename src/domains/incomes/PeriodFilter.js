@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { inject, observer } from "mobx-react";
 import { Periods, PeriodsShortLabels } from "../../utils/period";
-import { RadioField } from "../../sharedComponents/RadioField";
+import RadioField from "../../sharedComponents/RadioField";
 
 function PeriodFilter({ incomesStore }) {
   const { setFilter, selectedPeriod } = incomesStore;
