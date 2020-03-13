@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./style/reset.css";
+import { Provider } from "mobx-react";
+import incomesStore from "./stores/IncomesStore";
+import MyIncomes from "./screens/MyIncomes";
+import BaseLayout from "./sharedComponents/BaseLayout";
+import { ThemeProvider } from "styled-components";
+import theme from "./style/theme";
+import "numeral/locales/pt-br";
+import numeral from "numeral";
+import { GlobalStyle } from "./style/GlobalStyle";
+
+export function configureLocale() {
+  numeral.locale("pt-br");
+}
 
 function App() {
+  useEffect(configureLocale, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider {...{ incomesStore }}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BaseLayout>
+          <MyIncomes />
+        </BaseLayout>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
