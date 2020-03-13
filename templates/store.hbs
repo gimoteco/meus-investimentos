@@ -1,0 +1,21 @@
+import { action, computed, decorate, observable } from "mobx";
+
+class {{ storeName name }} {
+    sampleField = 1;
+
+    get sampleComputedProperty() {
+        return this.sampleField + 1;
+    }
+
+    sampleAction = newFilter => {
+        this.sampleField = 2;
+    };
+}
+
+decorate({{ storeName name }}, {
+    sampleField: observable,
+    sampleComputedProperty: computed,
+    sampleAction: action
+});
+
+export default new {{ storeName name }}();

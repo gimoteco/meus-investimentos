@@ -13,7 +13,11 @@
   correta de algumas funções e alguns de testes de integração usando react-testing-library
   para testar interações com os elementos. 
 - Escolheu-se a biblioteca de gráficos recharts pela facilidade de integração com o react.
-- Uso de linters para manter o código padronizado; automaticamente executado ao comitar. 
+- Uso de linters para manter o código padronizado; automaticamente executado ao comitar.
+
+# Ideias
+
+- Escrever tests e2e usando cypress
 
 # Rodando o projeto 
 
